@@ -1,0 +1,116 @@
+{% extends 'fullsite/base.html' %}
+{% load static%}
+{% block body %}
+
+<div class="container-fluid" style="background: rgba(0, 0, 0, 0.1);">
+  <div id="ImageCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators"  style="background: rgba(0, 0, 0, 0.1);">
+      <button type="button" data-bs-target="#ImageCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#ImageCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#ImageCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img  src="{% static 'fullsite/salebanner.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+
+      <div class="carousel-item">
+        <img  src="{% static 'fullsite/ban.jpg'%}" class="d-block w-100"  alt="...">      </div>
+      
+         </div>
+
+         <div class="carousel-item">
+          <img  src="{% static 'fullsite/banner2.jpg'%}" class="d-block w-100"   alt="...">      </div>
+
+           </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#ImageCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#ImageCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+
+
+  <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+     
+        {% for products in prodlist|slice:":1"%}
+         <div class="carousel-item active">
+          <div class="container">
+            <div class="row">
+           
+              {% for product in products%}
+              <div class="col">
+                <div class="card" style="width: 18rem;" id="{{product.id}}">
+                  <img src="/{{product.product_img}}" style="height: 280px; width: 280px;" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{product.product_name}}</h5>
+                    <p class="card-text">{{product.product_desc}}</p>
+                    <b>Price: {{product.price}} </b><br>
+                     <a href="{% url 'productview'%}?pid={{product.id}}" type="button" class="btn btn-primary btn-lg"> view description</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+
+        {% endfor%}
+        
+    
+
+      {% for products in prodlist|slice:"1:"%}
+        
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+
+                {% for product in products%}
+                <div class="col">
+                  <div class="card" style="width: 18rem;" id="{{product.product_id}}">
+                    <img src="/{{product.product_img}}" style="height: 280px; width: 280px;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.product_name}}</h5>
+                      <p class="card-text">{{product.product_desc}}</p>
+                      <b>Price: {{product.price}} </b><br>
+                      <a href="{% url 'productview'%}?pid={{product.id}}" type="button" class="btn btn-primary btn-lg"> view description</a>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+
+
+        {% endfor%}
+    </div>
+
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+<script>
+doucument.getElementById('cart').innerHTML = object.key(cart).length;
+});
+</script>
+{% endblock body %}

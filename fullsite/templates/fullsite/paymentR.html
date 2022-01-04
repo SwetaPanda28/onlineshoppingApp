@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+    {% csrf_token %}
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+          var options = {
+            key: "{{ mkey }}",
+              
+            amount: "{{ amount }}",
+            currency: "{{ currency }}",
+              
+            // Your/store name.
+            name: "Sweta's Store",
+              
+            order_id: "{{ orderId }}",
+            callback_url: "{{ callbackUrl }}",
+          };
+          console.log(options,typeof(options))
+          // initialise razorpay with the options.
+          var rzp1 = new Razorpay(options);
+    </script>
+    <button  onclick="rzp1.open();">Pay </button>
+    <input type="hidden" name="shopping_order_id" value="{{orderId}}"/>
+
+</body>
+</html>

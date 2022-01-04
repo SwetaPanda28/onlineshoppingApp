@@ -1,0 +1,14 @@
+{% extends 'fullsite/base.html' %}
+{% load static%}
+{% block body %}
+{% for product in products%}
+<form action="{% url 'cart' %}" method="POST">
+{% csrf_token %}
+    <input type="hiddden" name="pid" value="{{product.id}}"><br>
+    <img src="/{{product.product_img}}" height=200 width=220<br>
+    {{product.price}}<br>
+    <input type="submit" name="act" value="remove" class="btn btn-primary btn-lg"></input>
+    <a href="{% url 'order' %}"><button type="button" class="btn btn-secondary btn-lg">buy now</button></a>
+</form>
+{% endfor %}
+{% endblock body %}

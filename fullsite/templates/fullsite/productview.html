@@ -1,0 +1,14 @@
+{% extends 'fullsite/base.html' %}
+{% load static%}
+{% block body %}
+{{product.id}}<br>
+<img src="/{{product.product_img}}" height=500 width=480><br>
+{{product.price}}<br>
+{{product.product_desc}}<br>
+<form action= "{% url 'cart' %}" method="POST">
+{% csrf_token %}
+<input type="hidden" name="pid" value="{{product.id}}">
+<button type="submit" class="btn btn-primary btn-lg">continue</button>
+</form>
+
+{% endblock body %}
